@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import itertools
 #get four positive integers from user input
+#user's input is assumed to be always possitive
 def getfour():
 	raw = raw_input()
 	four = raw.split(' ')
@@ -22,15 +23,45 @@ def getfour():
 
 #read the four and get all possible combinations
 sauce = getfour()
-combs = set(itertools.permutations(sauce))
+# combs = set(itertools.permutations(sauce))
+combs = []
 
-results = []
+for a in range(len(sauce)):
+	for b in range(len(sauce)):
+		for c in range(len(sauce)):
+			for d in range(len(sauce)):
+				if(a == b or a == c or a == d or b == c or b == d or c == d):
+					continue
+				temp = []
+				temp.append(sauce[a])
+				temp.append(sauce[b])
+				temp.append(sauce[c])
+				temp.append(sauce[d])
+				combs.append(temp)
+
+print len(combs)
 
 
 #creating all possible repeated permutation of operators
 ops = ['+', '-', '*', '/']
-opcombs = [p for p in itertools.product(ops, repeat=3)]
+# opcombs = [p for p in itertools.product(ops, repeat=3)]
 # print opcombs
+# print len(opcombs)
+
+opcombs = []
+
+for a in ops:
+	for b in ops:
+		for c in ops:
+			temp = []				
+			temp.append(a)
+			temp.append(b)
+			temp.append(c)
+			opcombs.append(temp)
+
+print len(opcombs)
+
+results = []
 
 for comb in combs:
 	for i in range(4): #loop for parentheses
