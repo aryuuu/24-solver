@@ -1,11 +1,12 @@
 #!/usr/bin/python
-import itertools
+# import itertools
+import time
 #get four positive integers from user input
 #user's input is assumed to be always possitive
 def getfour():
 	raw = raw_input()
 	four = raw.split(' ')
-	four = [c for c in four]
+	four = [c+'.0' for c in four]
 	return four
 
 # amin = getfour()
@@ -22,9 +23,13 @@ def getfour():
 
 
 #read the four and get all possible combinations
-sauce = getfour()
+
 # combs = set(itertools.permutations(sauce))
+sauce = getfour()
 combs = []
+
+#get starting time
+start = time.time()
 
 for a in range(len(sauce)):
 	for b in range(len(sauce)):
@@ -39,15 +44,15 @@ for a in range(len(sauce)):
 				temp.append(sauce[d])
 				combs.append(temp)
 
-print len(combs)
+# print len(combs)
 
 
 #creating all possible repeated permutation of operators
-ops = ['+', '-', '*', '/']
+
 # opcombs = [p for p in itertools.product(ops, repeat=3)]
 # print opcombs
 # print len(opcombs)
-
+ops = ['+', '-', '*', '/']
 opcombs = []
 
 for a in ops:
@@ -59,7 +64,7 @@ for a in ops:
 			temp.append(c)
 			opcombs.append(temp)
 
-print len(opcombs)
+# print len(opcombs)
 
 results = []
 
@@ -74,34 +79,38 @@ for comb in combs:
 			for op in opcombs:
 				expression = '(' + comb[0] + op[0] + comb[1] + ')' + op[1] + '(' + comb[2] + op[2] + comb[3] + ')'
 				try:
-					if eval(expression) == 24:
+					if eval(expression) == 24 and expression not in results:
 						results.append(expression)
 				except:
 					pass
 		elif i == 1:
 			for op in opcombs:
-				expression = '(' + comb[0] + op[0] + '(' + comb[1]  + op[1] + comb[2] + ')' + ')' + op[2] + comb[3] 
+				expression = '(' + comb[0] + op[0] + '(' + comb[1]  + op[1] + comb[2] + '))' + op[2] + comb[3] 
 				try:
-					if eval(expression) == 24:
+					if eval(expression) == 24 and expression not in results:
 						results.append(expression)
 				except:
 					pass
 		elif i == 2:
 			for op in opcombs:
-				expression = '(' + '(' + comb[0] + op[0] + comb[1] + ')' + op[1] + comb[2] + ')' + op[2] + comb[3] 
+				expression = '((' + comb[0] + op[0] + comb[1] + ')' + op[1] + comb[2] + ')' + op[2] + comb[3] 
 				try:
-					if eval(expression) == 24:
+					if eval(expression) == 24 and expression not in results:
 						results.append(expression)
 				except:
 					pass
 		elif i == 3:
 			for op in opcombs:
-				expression = comb[0] + op[0] + '(' + '(' + comb[1]  + op[1] + comb[2] + ')' + op[2] + comb[3] + ')'
+				expression = comb[0] + op[0] + '((' + comb[1]  + op[1] + comb[2] + ')' + op[2] + comb[3] + ')'
 				try:
-					if eval(expression) == 24:
+					if eval(expression) == 24 and expression not in results:
 						results.append(expression)
 				except:
 					pass
+
+
+#get finish time
+end = time.time()
 
 
 if len(results) > 0:
@@ -111,3 +120,5 @@ if len(results) > 0:
 		print result
 else:
 	print "we ain't got any bro"
+
+print "the whole process takes " + str(end-start) + " seconds"
