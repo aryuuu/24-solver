@@ -6,7 +6,7 @@ import time
 def getfour():
 	raw = raw_input()
 	four = raw.split(' ')
-	four = [c+'.0' for c in four]
+	four = [c+'.0' for c in four] 
 	return four
 
 # amin = getfour()
