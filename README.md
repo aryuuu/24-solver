@@ -1,6 +1,5 @@
-#Tugas Kecil Strategi Algoritmik 1
-
-#24 Game Solver
+# 24 Game Solver
+## Tugas Kecil Strategi Algoritmik 1
 
 24 Game merupakan permainan dengan menggunakan 4 kartu acak, tugas pemain adalah menemukan operasi apa yang harus dilakukan pada seluruh kartu tersebut untuk mencapai hasil akhir 24. Tiap bilangan hanya boleh dioperasikan satu kali.
 
